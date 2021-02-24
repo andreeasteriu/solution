@@ -1,0 +1,22 @@
+:root {
+  --black: #222;
+  --grey: #65676b;
+  --hover-black: #2c225508;
+  --white-ish: rgb(223, 223, 223);
+  --radius: 0.9rem;
+  --box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.14);
+  --light-grey: #f0f2f5;
+  --thin-border: rgba(0, 0, 0, 0.05);
+}
+
+/* .Root {
+  padding: 5rem 18rem;
+  padding-bottom: 1.5rem;
+}
+
+@media all and (min-width: 480px) and (max-width: 1100px) {
+  .Root {
+    padding: 5rem 3rem;
+    padding-bottom: 1.5rem;
+  }
+} */
