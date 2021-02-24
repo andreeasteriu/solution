@@ -4,9 +4,11 @@ function PostContainer(props) {
   const { title, description, imagePath } = props.post;
   return (
     <div className={classes.PostContainer}>
-      <img src={imagePath} className={classes.Image} alt="img" />
-      <div className={classes.Title}>{title}</div>
-      <div className={classes.Description}>{description}</div>
+      <div className={classes.imageContainer}>
+        <img src={imagePath} className={classes.Image} alt="img" />
+      </div>
+      <h2 className={classes.Title}>{title}</h2>
+      <p className={classes.Description}>{description}</p>
     </div>
   );
 }
