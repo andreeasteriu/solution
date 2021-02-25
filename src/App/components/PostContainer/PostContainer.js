@@ -1,3 +1,4 @@
+import React from "react";
 import classes from "./PostContainer.module.css";
 
 const PostContainer = (props, key) => {

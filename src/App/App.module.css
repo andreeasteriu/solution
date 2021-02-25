@@ -3,23 +3,24 @@
   --grey: #65676b;
   --hover-black: #2c225508;
   --white-ish: rgb(223, 223, 223);
-  --radius: 0.9rem;
+  --radius: 0.5rem;
   --box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.14);
   --light-grey: #dcdcdc;
   --thin-border: rgba(0, 0, 0, 0.05);
+  --secondary: #f50057;
 }
 
 .Root {
-  padding: 2rem 3rem;
+  padding: 0 3rem;
   padding-bottom: 1.5rem;
 }
 @media all and (min-width: 900px) {
   .Root {
-    padding: 2rem 10rem;
+    padding: 0 10rem;
   }
 }
 @media all and (min-width: 1300px) {
   .Root {
-    padding: 2rem 23rem;
+    padding: 0 23rem;
   }
 }
