@@ -1,9 +1,9 @@
 import classes from "./PostContainer.module.css";
 
-function PostContainer(props) {
+const PostContainer = (props, key) => {
   const { title, description, imagePath } = props.post;
   return (
-    <div className={classes.PostContainer}>
+    <div className={classes.PostContainer} key={key}>
       <div className={classes.imageContainer}>
         <img src={imagePath} className={classes.Image} alt="img" />
       </div>
@@ -11,6 +11,6 @@ function PostContainer(props) {
       <p className={classes.Description}>{description}</p>
     </div>
   );
-}
+};
 
 export default PostContainer;

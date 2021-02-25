@@ -10,13 +10,16 @@
 }
 
 .Root {
-  padding: 5rem 15rem;
+  padding: 2rem 3rem;
   padding-bottom: 1.5rem;
 }
-
-@media all and (min-width: 480px) and (max-width: 1100px) {
+@media all and (min-width: 900px) {
   .Root {
-    padding: 5rem 3rem;
-    padding-bottom: 1.5rem;
+    padding: 2rem 10rem;
+  }
+}
+@media all and (min-width: 1300px) {
+  .Root {
+    padding: 2rem 23rem;
   }
 }

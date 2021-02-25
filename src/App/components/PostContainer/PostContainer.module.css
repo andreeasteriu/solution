@@ -15,8 +15,10 @@
   box-shadow: 0 0 10px 0 var(--light-grey);
 }
 .Title {
-  padding: 0 0.5rem;
+  margin: 0;
+  padding: 5px 10px;
 }
 .Description {
-  padding: 0 0.6rem;
+  margin: 0;
+  padding: 5px 10px 15px;
 }
