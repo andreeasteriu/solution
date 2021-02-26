@@ -11,8 +11,7 @@
 }
 
 .Root {
-  padding: 0 3rem;
-  padding-bottom: 1.5rem;
+  padding: 0 1rem;
 }
 @media all and (min-width: 900px) {
   .Root {

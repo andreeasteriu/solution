@@ -5,15 +5,18 @@ import AddIcon from "@material-ui/icons/Add";
 
 const AddPost = ({ setModal }) => {
   return (
-    <Fab
-      size="small"
-      color="secondary"
-      aria-label="add"
-      className={classes.margin}
-      onClick={() => setModal("Post")}
-    >
-      <AddIcon />
-    </Fab>
+    <React.Fragment>
+      <div className={classes.AddContainer}>
+        <Fab
+          size="small"
+          color="secondary"
+          aria-label="add"
+          onClick={() => setModal("Post")}
+        >
+          <AddIcon />
+        </Fab>
+      </div>
+    </React.Fragment>
   );
 };
 

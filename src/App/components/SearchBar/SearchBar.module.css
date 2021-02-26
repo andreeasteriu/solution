@@ -2,12 +2,18 @@
   background-color: #fff;
   border-radius: var(--radius);
   padding: 1em;
-  margin: 0 4em 1em;
+  margin: 0 0 1em;
   width: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: var(--box-shadow);
+}
+
+@media all and (min-width: 900px) {
+  .SearchBar {
+    margin: 0 4em 1em;
+  }
 }
 .Search {
   display: flex;

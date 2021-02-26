@@ -4,10 +4,15 @@
   grid-gap: 0.5em;
 }
 .PaginationContainer {
-  width: 350px;
+  width: 100%;
   margin: 1em auto;
   display: flex;
   justify-content: center;
+}
+@media all and (max-width: 900px) {
+  .PaginationContainer {
+    width: 350px;
+  }
 }
 .Title {
   text-align: center;

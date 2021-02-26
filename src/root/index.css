@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Open+Sans:wght@300&display=swap");
 body {
   margin: 0;
   background-color: #f0f2f5;
@@ -16,9 +15,16 @@ code {
 }
 
 h1,
-h2,
-h3 {
+h2 {
   font-family: "Handlee", cursive;
+}
+h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+}
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
 
 .loading {
