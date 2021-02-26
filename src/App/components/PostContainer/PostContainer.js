@@ -7,7 +7,7 @@ const PostContainer = (props, key, deletePost) => {
 
   return (
     <div className={classes.PostContainer} key={key}>
-      <div onclick={deletePost} className={classes.closeButton}>
+      <div onClick={deletePost} className={classes.closeButton}>
         <FontAwesomeIcon icon={faTimes} />
       </div>
 

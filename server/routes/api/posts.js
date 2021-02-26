@@ -2,7 +2,8 @@ const router = require("express").Router();
 const Post = require(__dirname + "/../../models/Post");
 const { uploadFile, removeImages } = require(__dirname +
   "/../../helpers/handleImages.js");
-const multipleUpload = uploadFile.array("imagePath", 1);
+const singleUpload = uploadFile.array("images", 1);
+const { s3EndPoint } = require(__dirname + "/../../config/awscredentials.js");
 
 // ====================== GET ALL POSTS ======================
 
@@ -26,7 +27,7 @@ router.get("/", async (req, res, next) => {
 //create post
 router.post("/", async (req, res, next) => {
   try {
-    multipleUpload(req, res, async (err) => {
+    singleUpload(req, res, async (err) => {
       if (err)
         return res.status(422).json({
           errors: [{ title: "Image Upload Error", detail: err.message }],
@@ -48,7 +49,7 @@ router.post("/", async (req, res, next) => {
       if (req.files.length > 0) {
         const photos = [];
         req.files.map((img) => photos.push(img.location.slice(-41)));
-        newPost.imagePath = JSON.stringify(photos[0]);
+        newPost.imagePath = JSON.stringify(s3EndPoint + photos[0]);
       }
 
       newPost.title = data.title;

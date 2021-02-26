@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { withStyles } from "@material-ui/core/styles";
+import DragAndDrop from "../DragAndDrop/DragAndDrop";
 import data from "../../assets/data";
 import { validateForm } from "../../helpers/validation";
 import toastr from "toastr";
@@ -69,7 +70,7 @@ const AuthModal = (props) => {
 
   const [files, setFiles] = useState([]);
 
-  // const setNewFiles = (files) => setFiles(files);
+  const setNewFiles = (files) => setFiles(files);
 
   const handleClose = () => props.closeModal();
 
@@ -102,9 +103,9 @@ const AuthModal = (props) => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        {/* <div>
+        <div>
           <DragAndDrop files={files} setNewFiles={setNewFiles} />
-        </div> */}
+        </div>
       </React.Fragment>
     );
   }
@@ -121,15 +122,14 @@ const AuthModal = (props) => {
       const isFormValid = validateForm(postContentData);
       if (!isFormValid.formIsValid)
         return toastr.error(`Invalid ${isFormValid.invalids.join(", ")}`);
-      // const requestData = new FormData();
+      const requestData = new FormData();
 
       const postContent = { title: post_title, description: post_description };
 
-      // requestData.append("data", JSON.stringify(postContent));
-      // files.map((file) => requestData.append("images", file, file.name));
+      requestData.append("data", JSON.stringify(postContent));
+      files.map((file) => requestData.append("images", file, file.name));
 
       setLoadingButton(true);
-      console.log(postContent);
       const res = data.unshift(postContent);
       setLoadingButton(false);
 

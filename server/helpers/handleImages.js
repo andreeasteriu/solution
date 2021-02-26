@@ -13,8 +13,6 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
-console.log(s3);
-
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype.toLowerCase() === "image/jpeg" ||
