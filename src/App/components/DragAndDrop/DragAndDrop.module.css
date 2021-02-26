@@ -33,12 +33,12 @@
   display: inline-flex;
   margin: 8px;
   width: auto;
-  height: 200px;
+  height: 120px;
   position: relative;
 }
 
 .ThumbInner {
-  width: 15rem;
+  width: 10rem;
 }
 
 .ThumbInner img {
@@ -71,8 +71,7 @@
 }
 
 .DragDrop {
-  width: 7rem;
-  margin: 0.5em 0;
+  width: 5rem;
 }
 
 .DragInfo {

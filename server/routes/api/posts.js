@@ -45,7 +45,7 @@ router.post("/", async (req, res, next) => {
       }
 
       let newPost = {};
-      const data = req.body;
+      const data = JSON.parse(req.body.data);
       if (req.files.length > 0) {
         const photos = [];
         req.files.map((img) => photos.push(img.location.slice(-41)));

@@ -39,7 +39,7 @@ export const createPost = async (postData) => {
   }
 };
 
-export const removePost = async () => {
+export const removePost = async (id) => {
   try {
     const options = {
       method: "DELETE",
@@ -49,7 +49,7 @@ export const removePost = async () => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(endpoint, options);
+    const response = await fetch(endpoint + "/" + id, options);
     const data = await response.json();
     return data;
   } catch (err) {

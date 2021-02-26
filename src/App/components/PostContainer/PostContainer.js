@@ -2,12 +2,17 @@ import React from "react";
 import classes from "./PostContainer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-const PostContainer = (props, key, deletePost) => {
-  const { title, description, imagePath } = props.post;
+const PostContainer = (props, key) => {
+  const { id, title, description, imagePath } = props.post;
 
   return (
     <div className={classes.PostContainer} key={key}>
-      <div onClick={deletePost} className={classes.closeButton}>
+      <div
+        onClick={(e) => {
+          props.handleDeletePost(id);
+        }}
+        className={classes.closeButton}
+      >
         <FontAwesomeIcon icon={faTimes} />
       </div>
 

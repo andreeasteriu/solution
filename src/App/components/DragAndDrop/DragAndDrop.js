@@ -11,7 +11,7 @@ const baseStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "10px",
+  padding: "0",
   margin: ".5em 0",
   borderWidth: 2,
   borderColor: "#eeeeee",
@@ -93,36 +93,6 @@ const DragAndDrop = (props) => {
     props.setNewFiles(newFiles);
   };
 
-  // const addImages = (e) => {
-  //   const inputImages = Array.from(e.target.files);
-
-  //   // eslint-disable-next-line
-  //   const newImages = inputImages.filter((file) => {
-  //     if (
-  //       props.files.findIndex((propFile) => propFile.name === file.name) === -1
-  //     )
-  //       return Object.assign(file, { preview: URL.createObjectURL(file) });
-  //   });
-
-  //   if (inputImages.length !== newImages.length)
-  //     toastr.warning(
-  //       "Only the new images will be added!",
-  //       "You uploaded duplicates!"
-  //     );
-
-  //   let updateImages = [...props.files, ...newImages];
-
-  //   if (updateImages.length > 10) {
-  //     updateImages = updateImages.filter((img, index) => index < 10);
-  //     toastr.warning(
-  //       "Only the first 10 iamges will be kept!",
-  //       "Too many images!"
-  //     );
-  //   }
-
-  //   props.setNewFiles(updateImages);
-  // };
-
   const style = useMemo(
     () => ({
       ...baseStyle,
@@ -189,17 +159,9 @@ const DragAndDrop = (props) => {
         <p style={onHoverText} className={classes.AcceptedFiles}>
           Accepted types: JPEG, JPG, PNG, SVG
         </p>
-        {/* <p style={onHoverText} className={classes.MaxFiles}>
-          (max. 10 images)
-        </p> */}
       </div>
 
-      <span className={classes.ThumbsContainer}>
-        {thumbs}
-        {/* {thumbs && thumbs.length > 0 && thumbs.length < 10 ? (
-          <AddMoreImages addImages={addImages} />
-        ) : undefined} */}
-      </span>
+      <span className={classes.ThumbsContainer}>{thumbs}</span>
     </div>
   );
 };

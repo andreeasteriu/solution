@@ -3,11 +3,11 @@ import classes from "./Modal.module.css";
 import TextField from "@material-ui/core/TextField";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import { createPost } from "../../helpers/posts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { withStyles } from "@material-ui/core/styles";
 import DragAndDrop from "../DragAndDrop/DragAndDrop";
-import data from "../../assets/data";
 import { validateForm } from "../../helpers/validation";
 import toastr from "toastr";
 import "../../styles/toastr.css";
@@ -63,7 +63,7 @@ const SubmitButton = withStyles({
 })(Button);
 
 const AuthModal = (props) => {
-  const [showPage, setShowPage] = useState(props.page);
+  const [showPage] = useState(props.page);
   const [loadingButton, setLoadingButton] = useState(false);
   const [post_title, setTitle] = useState("");
   const [post_description, setDescription] = useState("");
@@ -128,9 +128,9 @@ const AuthModal = (props) => {
 
       requestData.append("data", JSON.stringify(postContent));
       files.map((file) => requestData.append("images", file, file.name));
-
+      console.log(requestData);
       setLoadingButton(true);
-      const res = data.unshift(postContent);
+      const res = await createPost(requestData);
       setLoadingButton(false);
 
       // ====================== RESPONSE ======================

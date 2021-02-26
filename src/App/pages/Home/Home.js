@@ -30,11 +30,10 @@ const Home = () => {
   }, [posts]);
 
   // DELETE POST
-
   const handleDeletePost = async (id) => {
     const result = await removePost(id);
     if (result.status === 1) {
-      const indexDeleted = posts.findIndex((post) => post.post_id === id);
+      const indexDeleted = posts.findIndex((post) => post.id === id);
       const newPosts = [...posts];
       newPosts.splice(indexDeleted, 1);
       setPosts(newPosts);
@@ -54,12 +53,13 @@ const Home = () => {
   if (showModal)
     modalToShow = <Modal page={showModal} closeModal={closeModal} />;
 
-  if (posts === undefined)
+  if (posts === undefined) {
     return (
       <div className="loading">
         <ClipLoader size={50} color={"#f50057"} />
       </div>
     );
+  }
 
   return (
     <React.Fragment>
@@ -81,21 +81,21 @@ const Home = () => {
         />
         <div className={classes.GridContainer}>
           {posts
-            .filter((val) => {
-              if (searchTerm === "") return val;
+            .filter((post) => {
+              if (searchTerm === "") return post;
               else if (
-                val.title.toLowerCase().startsWith(searchTerm.toLowerCase())
+                post.title.toLowerCase().startsWith(searchTerm.toLowerCase())
               )
-                return val;
+                return post;
               return undefined;
             })
             .slice(indexofFirstPost, indexOfLastPost)
-            .map((val, key) => {
+            .map((post) => {
               return (
                 <PostContainer
-                  key={key}
-                  post={val}
-                  deletePost={handleDeletePost}
+                  key={post.id}
+                  post={post}
+                  handleDeletePost={handleDeletePost}
                 />
               );
             })}

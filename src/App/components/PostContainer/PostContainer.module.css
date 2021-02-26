@@ -2,7 +2,7 @@
   display: block;
   width: 100%;
   height: 200px;
-  object-fit: full; /* I don't use 'full' usually because it streches the image, but in our case, it fits quite well */
+  object-fit: cover;
 }
 .imageContainer {
   border-radius: var(--radius) var(--radius) 0 0;
