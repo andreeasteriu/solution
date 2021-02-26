@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const Post = require(__dirname + "/../../models/Post");
-// const { uploadFile, removeImages } = require(__dirname +"/../../helpers/handleImages.js");
+const { uploadFile, removeImages } = require(__dirname +
+  "/../../helpers/handleImages.js");
+const multipleUpload = uploadFile.array("images", 1);
 
-// const multipleUpload = uploadFile.array("images", 1);
+// ====================== GET ALL POSTS ======================
 
 router.get("/", async (req, res, next) => {
   try {
@@ -18,6 +20,85 @@ router.get("/", async (req, res, next) => {
     return res.send(posts);
   } catch (error) {
     return res.json({ status: 0, message: "Error returning the posts" });
+  }
+});
+
+// ====================== CREATE A PROPERTY ======================
+router.post("/", async (req, res) => {
+  try {
+    // multipleUpload(req, res, async (err) => {
+    //   if (err)
+    //     return res.status(422).json({
+    //       errors: [{ title: "Image Upload Error", detail: err.message }],
+    //     });
+
+    //   const errorRemoveImgs = [];
+    //   if (req.files.length > 0)
+    //     req.files.forEach((img) =>
+    //       errorRemoveImgs.push(img.location.slice(-41))
+    //     );
+
+    //   if (!req.body) {
+    //     if (errorRemoveImgs.length > 0) removeImages(errorRemoveImgs);
+    //     return res.json({ status: 0, message: "Invalid request!", code: 404 });
+    //   }
+
+    let newPost = {};
+    const data = JSON.parse(req.body.data);
+
+    // if (req.files.length > 0) {
+    //   const photos = [];
+    //   req.files.map((img) => photos.push(img.location.slice(-41)));
+    //   newPost.images = JSON.stringify(photos[0]);
+    // }
+    newPost.title = data.title;
+    newPost.description = data.description;
+
+    const createdPost = await Post.query().insertGraph(newPost);
+    if (!createdPost)
+      return res.json({
+        status: 0,
+        message: "Error while inserting user!",
+        code: 404,
+      });
+
+    return res.json({ status: 1, post: newPost });
+    // });
+  } catch (e) {
+    return res.json({ status: 0, message: "Error creating new post!" });
+  }
+});
+
+//delete post
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) return res.json({ status: 0, message: "Missing id!", code: 404 });
+
+    const post = await Post.query().select("images", "user_id").findById(id);
+    if (!post)
+      return res.json({
+        status: 0,
+        message: "Post does not exists!",
+        code: 404,
+      });
+
+    if (post.user_id !== req.session.user.id)
+      return res.json({ status: 0, message: "Unauthorized!", code: 404 });
+
+    if (post.images) {
+      const photo = [];
+      photo.push(post.images);
+      const awsRes = await removeImages(photo);
+
+      if (awsRes.status === 0)
+        return res.json({ status: 0, message: "Problem with aws", code: 404 });
+    }
+    const dbRes = await Post.query().deleteById(id);
+    if (!dbRes) return res.json({ status: 0, message: "Post does not exist!" });
+    return res.json({ status: 1, message: "Post deleted successfully!" });
+  } catch (err) {
+    return res.json({ status: 0, message: "Error deleting post!" });
   }
 });
 
