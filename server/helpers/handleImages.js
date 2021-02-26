@@ -13,6 +13,8 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
+console.log(s3);
+
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype.toLowerCase() === "image/jpeg" ||
@@ -28,12 +30,11 @@ const fileFilter = (req, file, cb) => {
     );
   }
 };
-
 const uploadFile = multer({
   fileFilter,
   storage: multerS3({
     s3: s3,
-    bucket: "gronjords-buddy",
+    bucket: "planday-solution",
     acl: "public-read",
     metadata: function (req, file, cb) {
       cb(null, { fieldName: "TESTING_METADATA" });
@@ -43,7 +44,6 @@ const uploadFile = multer({
     },
   }),
 });
-
 const removeImages = async (removedImages) => {
   if (removedImages && removedImages.length === 0)
     return { status: 1, message: "No images to remove!" };
@@ -55,7 +55,7 @@ const removeImages = async (removedImages) => {
 
     const s3Res = await s3
       .deleteObjects({
-        Bucket: "gronjords-buddy",
+        Bucket: "planday-solution",
         Delete: {
           Objects: imgsToRemove,
         },

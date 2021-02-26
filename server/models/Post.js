@@ -16,11 +16,6 @@ class Post extends Model {
         title: { type: "string", minLength: 2, maxLength: 41 },
         description: { type: "string", minLength: 2, maxLength: 100 },
       },
-      imagePath: {
-        type: "string",
-        minLength: 5,
-        maxLength: 41,
-      },
     };
   }
 }

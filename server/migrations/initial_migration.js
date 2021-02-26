@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.string("title").notNullable();
     table.string("description", 1500).notNullable();
-    table.string("imagePath");
+    table.json("imagePath");
     table.timestamp("created_at").defaultTo(knex.fn.now());
   });
 };
