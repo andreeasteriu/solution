@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "express": "4.17.1",
+    "objection": "2.2.3",
+    "knex": "0.21.12",
+    "helmet": "4.2.0",
+    "express-session": "1.17.1",
+    "connect-session-knex": "2.0.0",
+    "pg": "8.5.1",
+    "uuidv4": "6.2.5",
+    "uuid": "8.3.1",
+    "bcrypt": "5.0.0",
+    "aws-sdk": "2.825.0",
+    "multer": "1.4.2",
+    "multer-s3": "2.9.0",
+    "body-parser": "1.19.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "migrate:latest": "knex migrate:latest",
+    "migrate:make": "knex migrate:make",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed:make": "knex seed:make",
+    "seed:run": "knex seed:run",
+    "start-dev": "cross-env PORT=5555 nodemon app",
+    "start-prod": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

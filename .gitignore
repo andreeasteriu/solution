@@ -1,3 +1,10 @@
+server/node_modules
+server/package-lock.json
+server/config/dbConfig.js
+server/config/otherConfigs.js
+server/config/awscredentials.js
+package-lock.json
+
 # Logs
 logs
 *.log

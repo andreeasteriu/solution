@@ -1,7 +1,7 @@
 .GridContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1em;
+  grid-gap: 0.5em;
 }
 .PaginationContainer {
   width: 350px;
