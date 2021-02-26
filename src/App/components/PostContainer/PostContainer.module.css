@@ -10,6 +10,7 @@
   height: 200px;
 }
 .PostContainer {
+  position: relative;
   background-color: #fff;
   border-radius: var(--radius);
   box-shadow: 0 0 10px 0 var(--light-grey);
@@ -21,4 +22,13 @@
 .Description {
   margin: 0;
   padding: 5px 10px 15px;
+}
+.closeButton {
+  display: block;
+  padding: 0.5em;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

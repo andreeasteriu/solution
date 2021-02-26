@@ -2,9 +2,9 @@
 // export const endpoint = 'http://ec2-13-48-148-107.eu-north-1.compute.amazonaws.com:5555/api';
 
 // ====================== DEVELOPMENT ======================
-export const endpoint = "http://localhost:5555/api/posts";
+export const endpoint = "http://localhost:1234/api/posts";
 
-export const getPosts = async () => {
+export const getFeedPosts = async () => {
   try {
     const options = {
       credentials: "include",
@@ -39,7 +39,7 @@ export const createPost = async (postData) => {
   }
 };
 
-export const deletePost = async () => {
+export const removePost = async () => {
   try {
     const options = {
       method: "DELETE",

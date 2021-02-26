@@ -75,7 +75,7 @@ router.delete("/:id", async (req, res, next) => {
     const { id } = req.params;
     if (!id) return res.json({ status: 0, message: "Missing id!", code: 404 });
 
-    const post = await Post.query().select("images", "user_id").findById(id);
+    const post = await Post.query().select("images").findById(id);
     if (!post)
       return res.json({
         status: 0,

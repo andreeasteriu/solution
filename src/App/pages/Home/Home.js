@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Home.module.css";
 import PostContainer from "../../components/PostContainer/PostContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import toastr from "toastr";
 import CreatePagination from "../../components/Pagination/Pagination";
-import data from "../../assets/data";
+import { getFeedPosts, removePost } from "../../helpers/posts";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Home = () => {
-  const titles = data.map((val) => {
-    return val.title;
-  });
+  const [posts, setPosts] = useState(undefined);
   const [value, setValue] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
   const [showModal, setShowModal] = useState("");
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      if (posts === undefined) {
+        const posts = await getFeedPosts();
+        if (posts) setPosts(posts);
+        else toastr.error("Something went wrong!");
+      }
+    };
+
+    if (posts === undefined) fetchPosts();
+  }, [posts]);
+
+  // DELETE POST
+
+  const handleDeletePost = async (id) => {
+    const result = await removePost(id);
+    if (result.status === 1) {
+      const indexDeleted = posts.findIndex((post) => post.post_id === id);
+      const newPosts = [...posts];
+      newPosts.splice(indexDeleted, 1);
+      setPosts(newPosts);
+      toastr.success("Property deleted successfully!");
+    }
+  };
 
   const setModal = (modalName) => setShowModal(modalName);
   const closeModal = () => {
@@ -29,6 +54,13 @@ const Home = () => {
   if (showModal)
     modalToShow = <Modal page={showModal} closeModal={closeModal} />;
 
+  if (posts === undefined)
+    return (
+      <div className="loading">
+        <ClipLoader size={50} color={"#f50057"} />
+      </div>
+    );
+
   return (
     <React.Fragment>
       <div className={classes.Home}>
@@ -36,13 +68,19 @@ const Home = () => {
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
-          options={titles}
+          options={
+            posts
+              ? posts.map((val) => {
+                  return val.title;
+                })
+              : undefined
+          }
           value={value}
           setValue={setValue}
           setModal={setModal}
         />
         <div className={classes.GridContainer}>
-          {data
+          {posts
             .filter((val) => {
               if (searchTerm === "") return val;
               else if (
@@ -53,14 +91,20 @@ const Home = () => {
             })
             .slice(indexofFirstPost, indexOfLastPost)
             .map((val, key) => {
-              return <PostContainer key={key} post={val} />;
+              return (
+                <PostContainer
+                  key={key}
+                  post={val}
+                  deletePost={handleDeletePost}
+                />
+              );
             })}
         </div>
         <div className={classes.PaginationContainer}>
           <CreatePagination
             setCurrentPage={setCurrentPage}
             postsPerPage={postsPerPage}
-            totalPosts={data.length}
+            totalPosts={posts.length}
           />
         </div>
       </div>
