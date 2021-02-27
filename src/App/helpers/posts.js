@@ -2,7 +2,7 @@
 // export const endpoint =
 //   "http://ec2-13-48-148-107.eu-north-1.compute.amazonaws.com:1234/api";
 
-// // ====================== DEVELOPMENT ======================
+// ====================== DEVELOPMENT ======================
 export const endpoint = "http://localhost:1234/api/posts";
 
 export const getFeedPosts = async () => {
