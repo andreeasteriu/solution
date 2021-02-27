@@ -8,11 +8,8 @@ const Knex = require("knex");
 const knexFile = require(__dirname + "/knexfile");
 const session = require("express-session");
 const KnexStore = require("connect-session-knex")(session);
-const { sessionKey, serverPORT, clientEndpoint } = require(__dirname +
-  "/config/otherConfigs");
+const { sessionKey, serverPORT } = require(__dirname + "/config/otherConfigs");
 const routes = require(__dirname + "/routes/routes.js");
-
-const client = process.env.CLIENT || clientEndpoint;
 
 // ====================== MIDDLEWARE ======================
 app.use(express.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
