@@ -15,6 +15,8 @@ const routes = require(__dirname + "/routes/routes.js");
 app.use(express.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(express.json()); // parse application/json
 
+app.use(express.static("build"));
+
 // ====================== HELMET ======================
 // app.use(helmet());
 
@@ -57,6 +59,9 @@ app.use(
 // ====================== ADD ROUTES ======================
 app.use("/api", routes);
 
+app.get("*", (req, res) => {
+  res.sendFile("/build/index.html", { root: __dirname });
+});
 // ====================== CREATE SERVER ======================
 const PORT = process.env.PORT || serverPORT;
 app.listen(PORT, (err) =>
