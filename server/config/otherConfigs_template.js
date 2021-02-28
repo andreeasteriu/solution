@@ -1,4 +1,4 @@
 module.exports = {
   sessionKey: "your own unique server key",
-  serverPORT: 1234,
+  serverPORT: 8080,
 };

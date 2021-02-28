@@ -1,9 +1,9 @@
 // ====================== PRODUCTION ======================
-// export const endpoint =
-//   "http://ec2-13-48-148-107.eu-north-1.compute.amazonaws.com:1234/api";
+export const endpoint =
+  "http://ec2-13-48-148-107.eu-north-1.compute.amazonaws.com/api";
 
 // ====================== DEVELOPMENT ======================
-export const endpoint = "http://localhost:1234/api/posts";
+// export const endpoint = "http://localhost:8080/api/posts";
 
 export const getFeedPosts = async () => {
   try {
