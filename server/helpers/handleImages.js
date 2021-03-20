@@ -38,10 +38,16 @@ const uploadFile = multer({
       cb(null, { fieldName: "TESTING_METADATA" });
     },
     key: function (req, file, cb) {
-      cb(null, `${uuid()}.jpeg`);
+      cb(
+        null,
+        `${uuid()}.${file.mimetype
+          .substring(file.mimetype.lastIndexOf("/") + 1)
+          .toLowerCase()}`
+      );
     },
   }),
 });
+
 const removeImages = async (removedImages) => {
   if (removedImages && removedImages.length === 0)
     return { status: 1, message: "No images to remove!" };

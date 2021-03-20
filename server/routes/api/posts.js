@@ -48,7 +48,9 @@ router.post("/", async (req, res, next) => {
       const data = JSON.parse(req.body.data);
       if (req.files.length > 0) {
         const photos = [];
-        req.files.map((img) => photos.push(img.location.slice(-41)));
+        req.files.map((img) =>
+          photos.push(img.location.substring(img.location.lastIndexOf("/") + 1))
+        );
         newPost.imagePath = JSON.stringify(s3EndPoint + photos[0]);
       }
 

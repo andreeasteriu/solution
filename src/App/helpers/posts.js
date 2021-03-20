@@ -5,6 +5,7 @@
 // ====================== DEVELOPMENT ======================
 export const endpoint = "http://localhost:8080/api/posts";
 
+// ====================== GET ALL POSTS ======================
 export const getFeedPosts = async () => {
   try {
     const options = {
@@ -22,6 +23,7 @@ export const getFeedPosts = async () => {
   }
 };
 
+// ====================== CREATE A POST ======================
 export const createPost = async (postData) => {
   try {
     const options = {
@@ -40,6 +42,7 @@ export const createPost = async (postData) => {
   }
 };
 
+// ====================== DELETE A POST ======================
 export const removePost = async (id) => {
   try {
     const options = {
